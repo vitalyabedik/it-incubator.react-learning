@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import Accordion from './components/Accordion/Accordion';
+import {Rating} from "./components/Rating/Rating";
 
 function hello() {
     debugger
@@ -16,70 +18,29 @@ function App() {
     // обязана вернуть JSX
     return (
         <div className="App">
-            <AppTitle/>
-            <Rating/>
-            <Accourdion/>
-            <Rating/>
+            <PageTitle title={'This is APP component'}/>
+            <PageTitle title={'My friends'}/>
+            Article 1
+            <Rating value={3}/>
+            <Accordion title={"Menu"}/>
+            <Accordion title={"Users"}/>
+            Article 2
+            <Rating value={0}/>
+            <Rating value={1}/>
+            <Rating value={2}/>
+            <Rating value={3}/>
+            <Rating value={4}/>
+            <Rating value={5}/>
         </div>
     );
 }
 
-function AppTitle() {
-    console.log('AppTitle rendering')
-    return <>This is APP component</>
+function PageTitle(props: any) {
+    debugger
+    console.log('PageTitle rendering')
+    return <h1>{props.title}</h1>
 }
 
-function Rating() {
-    console.log('Rating rendering')
-    return (
-        <div>
-            <Star/>
-            <Star/>
-            <Star/>
-            <Star/>
-            <Star/>
-        </div>
 
-    )
-}
-
-function Accourdion() {
-    console.log('Accourdion rendering')
-    return (
-        <>
-            <AccourdionTitle/>
-            <AccourdionBody/>
-        </>
-    )
-}
-
-function AccourdionTitle() {
-    console.log('AccourdionTitle rendering')
-    return (
-        <>
-            <h3>Меню</h3>
-        </>
-    )
-}
-
-function AccourdionBody() {
-    console.log('AccourdionBody rendering')
-    return (
-        <>
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-            </ul>
-        </>
-    )
-}
-
-function Star() {
-    console.log('Star rendering')
-    return (
-        <div>Star</div>
-    )
-}
 
 export default App;
