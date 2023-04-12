@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 export function UncontrolledRating() {
     console.log('Rating rendering')
 
-    const [value, setValue] = useState(0)
+    const [value, setValue] = useState(3)
 
     const onClickValueHandler = (value: number) => {
         setValue(value)
@@ -11,29 +11,30 @@ export function UncontrolledRating() {
 
     return (
         <div>
-            <Star selected={value > 0}/><button onClick={() => onClickValueHandler(1)}>1</button>
-            <Star selected={value > 1}/><button onClick={() => onClickValueHandler(2)}>2</button>
-            <Star selected={value > 2}/><button onClick={() => onClickValueHandler(3)}>3</button>
-            <Star selected={value > 3}/><button onClick={() => onClickValueHandler(4)}>4</button>
-            <Star selected={value > 4}/><button onClick={() => onClickValueHandler(5)}>5</button>
+            <Star id={1} onClickValueHandler={onClickValueHandler} selected={value > 0}/>
+            <Star id={2} onClickValueHandler={onClickValueHandler} selected={value > 1}/>
+            <Star id={3} onClickValueHandler={onClickValueHandler} selected={value > 2}/>
+            <Star id={4} onClickValueHandler={onClickValueHandler} selected={value > 3}/>
+            <Star id={5} onClickValueHandler={onClickValueHandler} selected={value > 4}/>
         </div>
     )
 }
 
 type StarPropsType = {
+    id: number
     selected: boolean
+    onClickValueHandler: (value: number) => void
 }
 
 function Star(props: StarPropsType) {
     console.log('Star rendering')
-
-    if (props.selected === true) {
-        return (
-            <span><b>star </b></span>
-        )
-    } else {
-        return (
-            <span>star </span>
-        )
-    }
+    return (
+        <div>
+            {props.selected
+                ?
+                <span onClick={() => props.onClickValueHandler(props.id)}><b>star </b></span>
+                :
+                <span onClick={() => props.onClickValueHandler(props.id)}>star </span>}
+        </div>
+    )
 }
