@@ -3,6 +3,8 @@ import './App.css';
 import Accordion from './components/Accordion/Accordion';
 import {Rating} from './components/Rating/Rating';
 import {OnOff} from './components/OnOff/OnOff';
+import UncontrolledAccordion from './components/UncontrolledAccordion/UncontrolledAccordion';
+import {UncontrolledRating} from './components/UncontrolledRating/UncontrolledRating';
 
 function hello() {
     debugger
@@ -32,8 +34,9 @@ function App() {
             {/*<Rating value={3}/>*/}
             {/*<Rating value={4}/>*/}
             {/*<Rating value={5}/>*/}
-            <OnOff isOn/>
-            <OnOff isOn={false}/>
+            {/*<OnOff/>*/}
+            <UncontrolledAccordion titleValue={'Menu'}/>
+            <UncontrolledRating/>
         </div>
     );
 }
