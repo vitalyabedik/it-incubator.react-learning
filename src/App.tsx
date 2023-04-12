@@ -35,7 +35,10 @@ function App() {
             {/*<Rating value={4}/>*/}
             {/*<Rating value={5}/>*/}
             {/*<OnOff/>*/}
+            <Accordion titleValue={'Menu'} collapsed={false}/>
             <UncontrolledAccordion titleValue={'Menu'}/>
+
+            <Rating value={2}/>
             <UncontrolledRating/>
         </div>
     );
