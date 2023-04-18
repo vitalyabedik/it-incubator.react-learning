@@ -5,36 +5,25 @@ export function UncontrolledRating() {
 
     const [value, setValue] = useState(3)
 
-    const onClickValueHandler = (value: number) => {
-        setValue(value)
-    }
-
     return (
         <div>
-            <Star id={1} onClickValueHandler={onClickValueHandler} selected={value > 0}/>
-            <Star id={2} onClickValueHandler={onClickValueHandler} selected={value > 1}/>
-            <Star id={3} onClickValueHandler={onClickValueHandler} selected={value > 2}/>
-            <Star id={4} onClickValueHandler={onClickValueHandler} selected={value > 3}/>
-            <Star id={5} onClickValueHandler={onClickValueHandler} selected={value > 4}/>
+            <Star setValue={() => setValue(1)} selected={value > 0}/>
+            <Star setValue={() => setValue(2)} selected={value > 1}/>
+            <Star setValue={() => setValue(3)} selected={value > 2}/>
+            <Star setValue={() => setValue(4)} selected={value > 3}/>
+            <Star setValue={() => setValue(5)} selected={value > 4}/>
         </div>
     )
 }
 
 type StarPropsType = {
-    id: number
     selected: boolean
-    onClickValueHandler: (value: number) => void
+    setValue: () => void
 }
 
 function Star(props: StarPropsType) {
     console.log('Star rendering')
-    return (
-        <div>
-            {props.selected
-                ?
-                <span onClick={() => props.onClickValueHandler(props.id)}><b>star </b></span>
-                :
-                <span onClick={() => props.onClickValueHandler(props.id)}>star </span>}
-        </div>
-    )
+
+    return <span onClick={() => props.setValue()}>{props.selected ? <b>star </b> : 'star '}</span>
+
 }

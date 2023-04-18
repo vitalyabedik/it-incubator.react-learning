@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Accordion from './components/Accordion/Accordion';
-import {Rating} from './components/Rating/Rating';
+import {Rating, RatingValueType} from './components/Rating/Rating';
 import {OnOff} from './components/OnOff/OnOff';
 import UncontrolledAccordion from './components/UncontrolledAccordion/UncontrolledAccordion';
 import {UncontrolledRating} from './components/UncontrolledRating/UncontrolledRating';
+import {UncontrolledOnOff} from './components/UncontrolledOnOff/UncontrolledOnOff';
 
 function hello() {
     debugger
@@ -16,9 +17,11 @@ function hello() {
 
 // function declaration
 function App() {
-    console.log('App rendering')
-    // полезное что-то
-    // обязана вернуть JSX
+
+    const [ratingValue, setRatingValue] = useState<RatingValueType>(0)
+    const [accordionCollapsed, setAccordionCollapsed] = useState(false)
+    const [onVisible, setOnVisible] = useState(false)
+
     return (
         <div className="App">
             {/*<PageTitle title={'This is APP component'}/>*/}
@@ -34,12 +37,15 @@ function App() {
             {/*<Rating value={3}/>*/}
             {/*<Rating value={4}/>*/}
             {/*<Rating value={5}/>*/}
-            {/*<OnOff/>*/}
-            <Accordion titleValue={'Menu'} collapsed={false}/>
+            {/*<UncontrolledOnOff/>*/}
+            <Accordion titleValue={'Menu'} collapsed={accordionCollapsed} setAccordionCollapsed={setAccordionCollapsed}/>
             <UncontrolledAccordion titleValue={'Menu'}/>
 
-            <Rating value={2}/>
+            <Rating value={2} onClick={setRatingValue}/>
             <UncontrolledRating/>
+
+            <UncontrolledOnOff/>
+            <OnOff onVisible={onVisible} setOnVisible={setOnVisible}/>
         </div>
     );
 }
