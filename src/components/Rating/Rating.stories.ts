@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { within, userEvent } from '@storybook/testing-library';
 
-import {Rating, RatingValueType} from './Rating';
+import {Rating} from './Rating';
+
 
 
 
@@ -9,7 +10,7 @@ import {Rating, RatingValueType} from './Rating';
 const meta = {
     title: 'Rating',
     component: Rating,
-    tags: ['myComponent'],
+    tags: ['autodocs'],
     // argTypes: {
     //     value: RatingValueType,
     //     onClick: (value: RatingValueType) => void
@@ -63,3 +64,4 @@ export const ChangeStar: Story = {
         await userEvent.click(clickStar);
     },
 };
+
