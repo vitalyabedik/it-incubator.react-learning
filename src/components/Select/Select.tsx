@@ -1,23 +1,35 @@
 import React from 'react';
+import {TypeOfValues} from './Select.stories';
 
-type ItemType = {
+export type ItemType = {
     title: string
     value: any
 }
 
 type SelectPropsType = {
-    value: any
-    onChange: (value: any) => void
+    value: number
+    onOpen: () => void
+    changeSelectedValue: (value: TypeOfValues) => void
+    isOpen: boolean
     items: ItemType[]
+    filteredItems: ItemType[]
 }
 
 export function Select(props: SelectPropsType) {
-    console.log('Rating rendering')
+    const {isOpen, value, items, filteredItems, onOpen, changeSelectedValue} = props
+
+    const onOpenHadler = () => {
+        onOpen()
+    }
+
+    const onClickHandler = (value: TypeOfValues) => {
+        changeSelectedValue(value)
+    }
 
     return (
         <div>
-            <div>{}</div>
-            {props.items.map(i => <div>{i.title}</div>)}
+            <div onClick={onOpenHadler}>{items.filter(el => el.value === value)[0].title}</div>
+             {isOpen && filteredItems.map(i => <div key={i.value} onClick={() => onClickHandler(i.value)}>{i.title}</div>)}
         </div>
     )
 }

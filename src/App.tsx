@@ -39,7 +39,10 @@ function App() {
             {/*<Rating value={4}/>*/}
             {/*<Rating value={5}/>*/}
             {/*<UncontrolledOnOff/>*/}
-            <Accordion titleValue={'Menu'} collapsed={accordionCollapsed} onChange={() =>setAccordionCollapsed(!accordionCollapsed)}/>
+            {/*<Accordion titleValue={'Menu'}*/}
+            {/*           collapsed={accordionCollapsed}*/}
+            {/*           onChange={() =>setAccordionCollapsed(!accordionCollapsed)}/*/}
+            {/*>*/}
             <UncontrolledAccordion titleValue={'Menu'}/>
 
             <Rating value={2} onClick={setRatingValue}/> {switchOn.toString()}
