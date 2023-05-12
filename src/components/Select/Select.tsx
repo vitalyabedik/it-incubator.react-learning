@@ -1,6 +1,7 @@
 import React, {useState, KeyboardEvent, useEffect} from 'react';
 
 import styles from './Select.module.css'
+import {ModeChangingMemoized} from '../Accordion/Accordion.stories';
 
 export type ItemType = {
     title: string
@@ -14,7 +15,7 @@ type SelectPropsType = {
 
 }
 
-export function Select(props: SelectPropsType) {
+export function SelectMemoized(props: SelectPropsType) {
     const {value, items, onChange} = props
 
     const [active, setActive] = useState(false)
@@ -94,3 +95,5 @@ export function Select(props: SelectPropsType) {
         </>
     )
 }
+
+export const Select = React.memo(SelectMemoized)

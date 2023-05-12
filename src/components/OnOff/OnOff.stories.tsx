@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {action} from '@storybook/addon-actions'
-import {OnOff} from './OnOff';
+import {OnOff, OnOffMemoized} from './OnOff';
 
 export default {
     title: "OnOff",
@@ -9,11 +9,16 @@ export default {
 
 const callback = action('on or off clicked')
 
-export const OnMode = () => <OnOff on={true} onChange={callback}/>
-export const OffMode = () => <OnOff on={false} onChange={callback}/>
+export const OnModeMemoized = () => <OnOff on={true} onChange={callback}/>
+export const OffModeMemoized = () => <OnOff on={false} onChange={callback}/>
 
-export const ModeChanging = () => {
+export const OnMode = React.memo(OnModeMemoized)
+export const OffMode = React.memo(OffModeMemoized)
+
+export const ModeChangingMemoized = () => {
     const [value, setValue] = useState<boolean>(true)
 
     return <OnOff on={value} onChange={setValue}/>
 }
+
+export const ModeChanging = React.memo(ModeChangingMemoized)

@@ -1,5 +1,6 @@
 import React from 'react';
 import {TypeOfValues} from './MySelect.stories';
+import {ModeChangingMemoized} from '../Accordion/Accordion.stories';
 
 export type ItemType = {
     title: string
@@ -15,7 +16,7 @@ type SelectPropsType = {
     filteredItems: ItemType[]
 }
 
-export function MySelect(props: SelectPropsType) {
+export function MySelectMemoized(props: SelectPropsType) {
     const {isOpen, value, items, filteredItems, onOpen, changeSelectedValue} = props
 
     const onOpenHadler = () => {
@@ -33,3 +34,5 @@ export function MySelect(props: SelectPropsType) {
         </div>
     )
 }
+
+export const MySelect = React.memo(MySelectMemoized)

@@ -1,11 +1,12 @@
 import React, {useReducer} from 'react';
 import {reducer, TOGGLE_COLLAPSED} from './reducer';
+import {WithValueMemoized} from '../Select/Select.stories';
 
 type UncontrolledAccordionPropsType = {
     titleValue: string,
 }
 
-function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
+function UncontrolledAccordionMemoized(props: UncontrolledAccordionPropsType) {
     console.log('Accordion rendering')
         // const [collapsed, setCollapsed] = useState(false)
 
@@ -20,19 +21,23 @@ function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
         )
 }
 
+export const UncontrolledAccordion = React.memo(UncontrolledAccordionMemoized)
+
 type AccordionTitlePropsType = {
     title: string
     onClick: () => void
 }
 
-function AccordionTitle(props: AccordionTitlePropsType) {
+function AccordionTitleMemoized(props: AccordionTitlePropsType) {
     console.log('AccordionTitle rendering')
     return (
         <h3 onClick={props.onClick}>{props.title}</h3>
     )
 }
 
-function AccordionBody() {
+export const AccordionTitle = React.memo(AccordionTitleMemoized)
+
+function AccordionBodyMemoized() {
     console.log('AccordionBody rendering')
     return (
         <ul>
@@ -42,5 +47,7 @@ function AccordionBody() {
         </ul>
     )
 }
+
+export const AccordionBody = React.memo(AccordionBodyMemoized)
 
 export default UncontrolledAccordion

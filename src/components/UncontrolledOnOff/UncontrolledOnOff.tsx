@@ -1,11 +1,11 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 
 
 type PropsType = {
     onChange: (on: boolean) => void
 }
 
-export const UncontrolledOnOff = (props: PropsType) => {
+export const UncontrolledOnOffMemoized = (props: PropsType) => {
     const [isOn, setIsOn] = useState(false)
 
     const onStyle = {
@@ -55,3 +55,5 @@ export const UncontrolledOnOff = (props: PropsType) => {
         </div>
     )
 }
+
+export const UncontrolledOnOff = React.memo(UncontrolledOnOffMemoized)

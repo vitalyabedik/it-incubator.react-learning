@@ -1,4 +1,5 @@
 import React from 'react';
+import {ModeChangingMemoized} from '../OnOff/OnOff.stories';
 
 export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5
 
@@ -7,7 +8,7 @@ type RatingPropsType = {
     onClick: (value: RatingValueType) => void
 }
 
-export function Rating(props: RatingPropsType) {
+export function RatingMemoized(props: RatingPropsType) {
     console.log('Rating rendering')
 
     return (
@@ -21,16 +22,20 @@ export function Rating(props: RatingPropsType) {
     )
 }
 
+export const Rating = React.memo(RatingMemoized)
+
 type StarPropsType = {
     value: RatingValueType
     selected: boolean
     onClick: (value: RatingValueType) => void
 }
 
-function Star(props: StarPropsType) {
+function StarMemoized(props: StarPropsType) {
     console.log('Star rendering')
 
     return <span onClick={() => {
         props.onClick(props.value)
     }}>{props.selected ? <b>star</b> : 'star'}</span>
 }
+
+export const Star = React.memo(StarMemoized)

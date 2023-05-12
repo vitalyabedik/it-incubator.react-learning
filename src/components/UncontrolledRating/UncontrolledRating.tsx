@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import {UncontrolledOnOffMemoized} from '../UncontrolledOnOff/UncontrolledOnOff';
 
-export function UncontrolledRating() {
+export function UncontrolledRatingMemoized() {
     console.log('Rating rendering')
 
     const [value, setValue] = useState(3)
@@ -16,14 +17,18 @@ export function UncontrolledRating() {
     )
 }
 
+export const UncontrolledRating = React.memo(UncontrolledRatingMemoized)
+
 type StarPropsType = {
     selected: boolean
     setValue: () => void
 }
 
-function Star(props: StarPropsType) {
+function StarMemoized(props: StarPropsType) {
     console.log('Star rendering')
 
     return <span onClick={() => props.setValue()}>{props.selected ? <b>star </b> : 'star '}</span>
 
 }
+
+export const Star = React.memo(StarMemoized)

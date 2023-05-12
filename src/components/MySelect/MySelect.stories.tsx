@@ -24,7 +24,7 @@ const onClickCallback = action('some item was clicked')
 // export const SelectClosedMode = () => <Select isOpen value={'Select'} onChange={callback} items={[]}/>
 // export const SelectOpenedMode = () => <Select isOpen={false} value={'Select'} onChange={callback} items={items}/>
 
-export const ModeChanging = () => {
+export const ModeChangingMemoized = () => {
     const [items, setItems] = useState<ItemType[]>([...initialItems])
     const [selectedValue, setSelectedValue] = useState<TypeOfValues>(1)
     const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -63,3 +63,5 @@ export const ModeChanging = () => {
                      filteredItems={filteredItems}
     />
 }
+
+const ModeChanging = React.memo(ModeChangingMemoized)

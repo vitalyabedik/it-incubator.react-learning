@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import {action} from '@storybook/addon-actions';
-import {ItemType, Select} from './Select';
+import {ItemType, Select, SelectMemoized} from './Select';
 
 
 export default {
@@ -24,7 +24,7 @@ const initialItems = [
 //         />
 //     </>
 
-export const WithValue = () => {
+export const WithValueMemoized = () => {
     const [value, setValue] = useState('2')
 
     return (
@@ -37,7 +37,9 @@ export const WithValue = () => {
     )
 }
 
-export const WithoutValue = () => {
+export const WithValue = React.memo(WithValueMemoized)
+
+export const WithoutValueMemoized = () => {
     const [value, setValue] = useState(null)
 
     return (
@@ -49,3 +51,5 @@ export const WithoutValue = () => {
         </>
     )
 }
+
+export const WithoutValue = React.memo(WithoutValueMemoized)

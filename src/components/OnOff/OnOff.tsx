@@ -1,13 +1,12 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
+import {ModeChangingMemoized} from '../MySelect/MySelect.stories';
 
 type PropsType = {
     on: boolean
     onChange: (on: boolean) => void
 }
 
-export const OnOff = (props: PropsType) => {
-
-
+export const OnOffMemoized = (props: PropsType) => {
     const onStyle = {
         width: '30px',
         height: '20px',
@@ -45,3 +44,5 @@ export const OnOff = (props: PropsType) => {
         </div>
     )
 }
+
+export const OnOff = React.memo(OnOffMemoized)
