@@ -57,3 +57,27 @@ export const SetTimeoutExample = () => {
         {/*<button onClick={() => setCounter(counter + 1)}>counter+</button>*/}
     </>
 }
+
+
+export const ClockExample = () => {
+    const [time, setTime] = useState(new Date())
+    // const [timeId, setTimeId] = useState(undefined)
+
+    const currentTime = time.toLocaleTimeString('ru-RU', {
+        hour: 'numeric', minute: 'numeric', second: 'numeric',
+    })
+
+    useEffect(() => {
+
+        const timeId = setInterval(() => {
+            setTime(new Date())
+            console.log(currentTime)
+        }, 1000)
+
+        return () => clearInterval(timeId)
+    }, [])
+
+    return <>
+        {currentTime}
+    </>
+}
