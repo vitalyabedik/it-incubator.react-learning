@@ -32,7 +32,7 @@ export const SimpleExample = () => {
     </>
 }
 
-export const SetTimeoutExample = () => {
+export const SetIntervalExample = () => {
     const [fake, setFake] = useState(1)
     const [counter, setCounter] = useState(1)
 
@@ -46,9 +46,13 @@ export const SetTimeoutExample = () => {
     // }, [counter])
 
     useEffect(() => {
-        setInterval(() => {
+        const intervalId = setInterval(() => {
             setCounter((prevCounter) => prevCounter + 1)
         }, 1000)
+
+        return () => {
+            clearInterval(intervalId)
+        }
     }, [])
 
     return <>
@@ -79,5 +83,73 @@ export const ClockExample = () => {
 
     return <>
         {currentTime}
+    </>
+}
+
+
+export const ResetEffectExample = () => {
+    const [counter, setCounter] = useState(1)
+
+    console.log('Component rendered')
+
+    useEffect(() => {
+        console.log('Effect occured' + counter)
+
+        return () => {
+            console.log('RESET EFFECT')
+        }
+    }, [counter])
+
+    const increase = () => setCounter(counter + 1)
+
+    return <>
+        Hello, counter: {counter}
+        <button onClick={increase}></button>
+    </>
+}
+
+
+export const KeysTrackerExample = () => {
+    const [text, setText] = useState('')
+
+    console.log('Component rendered' + text)
+
+    useEffect(() => {
+        const handler = (e: KeyboardEvent) => {
+            console.log(e.code)
+            setText(text => text + e.code)
+        }
+
+        window.document.addEventListener('keypress', handler)
+
+        return () => {
+            window.document.removeEventListener('keypress', handler)
+        }
+    }, [])
+
+    return <>
+        Typed, text: {text}
+    </>
+}
+
+
+export const SetTimeoutExample = () => {
+    const [text, setText] = useState('')
+
+    console.log('Component rendered' + text)
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            console.log('TIMEOUT EXPIRED')
+            setText('3 seconds passed')
+        }, 3000)
+
+        return () => {
+            clearTimeout(timeoutId)
+        }
+    }, [text])
+
+    return <>
+        Typed, text: {text}
     </>
 }
